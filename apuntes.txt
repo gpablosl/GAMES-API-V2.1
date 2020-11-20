@@ -1,0 +1,25 @@
+{
+  games{
+    id
+    name
+    author
+    image
+    description
+    GameGroup{
+      name
+    }
+  }
+}
+
+mutation{
+  editGame(id:"", name: "", author: "", description: "", gameGroupId: ""){
+    id
+    name
+  	author
+    description
+    GameGroup{
+      name
+      id
+    }
+  }
+}
