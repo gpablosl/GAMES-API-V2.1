@@ -5,6 +5,9 @@ import GameGroupType from './GameGroupType.js';
 import GameType from './GameType.js';
 import GameGroup from '../models/GameGroup.js';
 
+import FileUpload from '../models/FileUpload.js';
+import FileUploadType from './FileUploadType.js';
+
 
 const {GraphQLID, GraphQLString, GraphQLObjectType} = graphql;
 
@@ -20,6 +23,7 @@ const MutationType = new GraphQLObjectType({
                 author: {type: GraphQLString},
                 image:{type: GraphQLString},
                 description: {type: GraphQLString},
+                filePath: {type: GraphQLString},
                 gameGroupId: {type: GraphQLID}
             },
             resolve(parent, args){
@@ -35,6 +39,7 @@ const MutationType = new GraphQLObjectType({
                 author:{type: GraphQLString},
                 image:{type: GraphQLString},
                 description:{type: GraphQLString},
+                filePath: {type: GraphQLString},
                 gameGroupId: {type: GraphQLID}
             },
             resolve(parent, args){
@@ -78,6 +83,17 @@ const MutationType = new GraphQLObjectType({
                 return GameGroup.findByIdAndRemove(args.id);
             }
         },
+        addFile: {
+            type: FileUploadType,
+            args: {
+                name: {type: GraphQLString},
+                path: {type: GraphQLString}
+            },
+            resolve(parent, args){
+                const fileUpload = new FileUpload(args);
+                return fileUpload.save();
+            }
+        }
     }
 });
 

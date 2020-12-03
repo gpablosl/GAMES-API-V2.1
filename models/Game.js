@@ -7,6 +7,7 @@ const GameSchema = new Schema({
     author: String,
     image: String,
     description: String,
+    filePath: String,
     gameGroupId: String
  
 });

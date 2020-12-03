@@ -6,6 +6,9 @@ import GameGroup from '../models/GameGroup.js';
 import GameGroupType from './GameGroupType.js';
 import GameType from './GameType.js';
 
+import FileUpload from '../models/FileUpload.js';
+import FileUploadType from './FileUploadType.js';
+
 const {GraphQLID, GraphQLObjectType, GraphQLList} = graphql;
 
 
@@ -47,6 +50,12 @@ const RootQueryType = new GraphQLObjectType({
                 return GameGroup.find();
             }
         },
+        filesuploads: {
+            type: new GraphQLList(FileUploadType),
+            resolve(parent, args){
+                return FileUpload.find();
+            }
+        }
     }   
 });
 

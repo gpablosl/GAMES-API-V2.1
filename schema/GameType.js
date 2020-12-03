@@ -12,6 +12,7 @@ const GameType = new GraphQLObjectType({
         author:{type: GraphQLString},
         image:{type: GraphQLString},
         description:{type: GraphQLString},
+        filePath: {type: GraphQLString},
         GameGroup: {
             type: GameGroupType,
             resolve(parent, args){
